@@ -11,12 +11,36 @@ return [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
+    'defaultRoute' => 'main',
     'modules' => [
         'main' => [
-            'class' => 'frontend\modules\main\Module',
+            'class' => 'app\modules\main\Module',
         ],
     ],
+
     'components' => [
+
+        'mail' => [
+            'class'            => 'zyx\phpmailer\Mailer',
+            'viewPath'         => '@common/mail',
+            'useFileTransport' => false,
+            'config'           => [
+                'mailer'     => 'smtp',
+                'host'       => 'smtp.yandex.ru',
+                'port'       => '465',
+                'smtpsecure' => 'ssl',
+                'smtpauth'   => true,
+                'username'   => 'yii2.school@yandex.ru',
+                'password'   => '540320',
+                'ishtml' => true,
+                'charset' => 'UTF-8',
+            ],
+        ],
+
+        'common' => [
+            'class' => 'frontend\components\Common',
+        ],
+
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
@@ -32,20 +56,6 @@ return [
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
-        ],
-        'mail' => [
-            'class'            => 'zyx\phpmailer\Mailer',
-            'viewPath'         => '@common/mail',
-            'useFileTransport' => false,
-            'config'           => [
-                'mailer'     => 'smtp',
-                'host'       => 'smtp.yandex.ru',
-                'port'       => '465',
-                'smtpsecure' => 'ssl',
-                'smtpauth'   => true,
-                'username'   => 'mysmtplogin@example.ru',
-                'password'   => 'mYsmTpPassword',
-            ],
         ],
     ],
     'params' => $params,

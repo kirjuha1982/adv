@@ -5,7 +5,7 @@
         $form = \yii\bootstrap\ActiveForm::begin([
            // 'layout'=>'horizontal'
           //  'enableClientValidation'=>false,
-           // 'enableAjaxValidation'=>true,
+            'enableAjaxValidation'=>true,
         ]);
         ?>
 

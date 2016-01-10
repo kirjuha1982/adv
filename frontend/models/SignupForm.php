@@ -21,12 +21,12 @@ class SignupForm extends Model
     public function rules()
     {
         return [
-            ['username', 'filter', 'filter' => 'trim'],
+          //  ['username', 'filter', 'filter' => 'trim'],
             [['username', 'repassword'], 'required'],
             //['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
             ['username', 'string', 'min' => 2, 'max' => 255],
 
-            ['email', 'filter', 'filter' => 'trim'],
+       //     ['email', 'filter', 'filter' => 'trim'],
             ['email', 'required'],
             ['email', 'email'],
             ['email', 'string', 'max' => 255],
@@ -36,6 +36,13 @@ class SignupForm extends Model
             ['password', 'string', 'min' => 6],
             ['repassword', 'compare', 'compareAttribute'=>'password'],
         ];
+    }
+
+    public  function scenarios()
+    {
+        $scenarios = parent::scenarios();
+        $scenarios['short_register'] = ['username', 'email'];
+        return $scenarios;
     }
 
     /**
